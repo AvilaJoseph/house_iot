@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { LucideAngularModule, Bell, User, Zap, Moon, Settings, ChevronRight } from 'lucide-angular';
+import { LucideAngularModule, Bell, User, Zap, Moon, Settings, Menu } from 'lucide-angular';
 
 @Component({
   selector: 'app-topbar',
@@ -17,7 +17,7 @@ export class TopbarComponent {
   readonly Zap = Zap;
   readonly Moon = Moon;
   readonly Settings = Settings;
-  readonly ChevronRight = ChevronRight;
+  readonly Menu = Menu;
 
   onMenuClick() {
     this.toggleMenu.emit();
