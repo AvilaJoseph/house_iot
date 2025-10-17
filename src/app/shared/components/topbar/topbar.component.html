@@ -1,3 +1,23 @@
-<div class="w-full h-full flex">
-    
+<div class="flex justify-end items-center gap-3 w-full h-full px-6">
+  <!-- Dark Mode Toggle -->
+  <button class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600">
+    <lucide-icon [img]="Moon" class="w-5 h-5"></lucide-icon>
+  </button>
+
+  <!-- Notifications -->
+  <button class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600 relative">
+    <lucide-icon [img]="Bell" class="w-5 h-5"></lucide-icon>
+    <!-- Notification badge -->
+    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+  </button>
+
+  <!-- Settings -->
+  <button class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600">
+    <lucide-icon [img]="Settings" class="w-5 h-5"></lucide-icon>
+  </button>
+
+  <!-- User Profile -->
+  <button class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600">
+    <lucide-icon [img]="User" class="w-5 h-5"></lucide-icon>
+  </button>
 </div>

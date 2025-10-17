@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { LucideAngularModule, Bell, User, Zap, Moon, Settings } from 'lucide-angular';
 
 @Component({
   selector: 'app-topbar',
-  imports: [],
+  standalone: true,
   templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.css',
+  styleUrls: ['./topbar.component.css'],
+  imports: [LucideAngularModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopbarComponent { }
+export class TopbarComponent {
+  readonly Bell = Bell;
+  readonly User = User;
+  readonly Zap = Zap; 
+  readonly Moon = Moon;
+  readonly Settings = Settings;
+}
