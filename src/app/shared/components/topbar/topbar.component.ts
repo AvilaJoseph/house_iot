@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LucideAngularModule, Bell, User, Zap, Moon, Settings } from 'lucide-angular';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { LucideAngularModule, Bell, User, Zap, Moon, Settings, ChevronRight } from 'lucide-angular';
 
 @Component({
   selector: 'app-topbar',
@@ -10,9 +10,16 @@ import { LucideAngularModule, Bell, User, Zap, Moon, Settings } from 'lucide-ang
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopbarComponent {
+  @Output() toggleMenu = new EventEmitter<void>();
+
   readonly Bell = Bell;
   readonly User = User;
-  readonly Zap = Zap; 
+  readonly Zap = Zap;
   readonly Moon = Moon;
   readonly Settings = Settings;
+  readonly ChevronRight = ChevronRight;
+
+  onMenuClick() {
+    this.toggleMenu.emit();
+  }
 }

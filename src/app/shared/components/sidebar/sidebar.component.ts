@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Output, EventEmitter } from '@angular/core';
 import { LucideAngularModule, Home, Lightbulb, Thermometer, Droplet, Zap, Camera, Lock, AlertCircle, BarChart3 } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
+  @Output() menuItemClick = new EventEmitter<void>();
+
   // Iconos de Lucide
   Home = Home;
   Lightbulb = Lightbulb;
@@ -34,5 +36,6 @@ export class SidebarComponent {
 
   setActive(menuId: string) {
     this.activeMenu = menuId;
+    this.menuItemClick.emit();
   }
 }

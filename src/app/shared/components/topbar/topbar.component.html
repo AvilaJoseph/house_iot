@@ -1,4 +1,16 @@
-<div class="flex justify-end items-center gap-3 w-full h-full px-6">
+<div class="flex justify-between items-center w-full h-full px-6">
+  <!-- Menu Toggle (Mobile) - Solo lado izquierdo -->
+  <button 
+    (click)="onMenuClick()"
+    class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600 lg:hidden">
+    <lucide-icon [img]="ChevronRight" class="w-6 h-6"></lucide-icon>
+  </button>
+  
+  <!-- Espaciador en desktop -->
+  <div class="hidden lg:block"></div>
+
+  <!-- Iconos del lado derecho - Siempre visibles -->
+  <div class="flex items-center gap-3">
   <!-- Dark Mode Toggle -->
   <button class="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200 hover:bg-gray-100 text-gray-600 hover:text-blue-600">
     <lucide-icon [img]="Moon" class="w-6 h-6"></lucide-icon>
