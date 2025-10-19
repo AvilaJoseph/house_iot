@@ -89,15 +89,10 @@ export class HomePlanComponent {
     return this.rooms.reduce((acc, r) => acc + (r.lights?.length || 0), 0);
   }
 
-  // retorna total de luces encendidas en toda la casa
   getLightsOn(): number {
-    return this.rooms.reduce((acc, r) => {
-      const on = (r.lights || []).filter((l: any) => l.on).length;
-      return acc + on;
-    }, 0);
+    return this.rooms.reduce((acc, r) => acc + (r.lights || []).filter(l => l.on).length, 0);
   }
 
-  // retorna cantidad de luces encendidas en una habitación
   getRoomOnCount(room: any): number {
     return (room.lights || []).filter((l: any) => l.on).length;
   }
