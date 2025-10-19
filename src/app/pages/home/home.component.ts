@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SidebarComponent } from "../../shared/components/sidebar/sidebar.component";
 import { TopbarComponent } from "../../shared/components/topbar/topbar.component";
 import { CommonModule } from '@angular/common';
-import { StatsComponent } from "../../features/home/stats/stats.component";
+import { ContentHomeComponent } from "../../features/home/content-home/content-home.component";
 
 @Component({
-  selector: 'app-home',
-  imports: [SidebarComponent, TopbarComponent, CommonModule, StatsComponent],
+  selector: 'home-page',
+  imports: [SidebarComponent, TopbarComponent, CommonModule, ContentHomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
