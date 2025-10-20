@@ -1,22 +1,111 @@
 <div class="space-y-6 mt-4">
 
-  <!-- PLANO SVG -->
+  <!-- PLANO SVG INTERACTIVO -->
   <div class="relative bg-gray-50 rounded-2xl p-4 flex justify-center items-center overflow-hidden">
-    <!-- Indicador global -->
-    <div class="absolute top-4 left-4 bg-white backdrop-blur-sm rounded-xl px-3 py-2 flex items-center gap-3 shadow-lg">
-      <div class="flex flex-col">
-        <span class="text-xs text-gray-500">Luces</span>
-        <span class="text-sm font-semibold text-gray-800">{{ getLightsOn() }} / {{ getTotalLights() }}</span>
+
+    <!-- Indicadores globales -->
+    <div class="absolute top-4 left-4 flex items-center gap-3 bg-white backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg z-10">
+      <!-- Luces -->
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs text-gray-500">Luces</span>
+          <span class="text-sm font-semibold text-gray-800">
+            {{ getLightsOn() }} / {{ getTotalLights() }}
+          </span>
+        </div>
+        <div class="h-2.5 w-2.5 rounded-full"
+             [ngClass]="{'bg-yellow-400': getLightsOn()>0, 'bg-gray-300': getLightsOn()===0 }"
+             title="Luces encendidas"></div>
       </div>
-      <div class="h-2.5 w-2.5 rounded-full"
-           [ngClass]="{'bg-yellow-400': getLightsOn()>0, 'bg-gray-300': getLightsOn()===0 }"
-           title="Luces encendidas"></div>
+
+      <div class="w-px h-6 bg-gray-200"></div>
+
+      <!-- Aire acondicionado -->
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs text-gray-500">Aire</span>
+          <span class="text-sm font-semibold text-gray-800">
+            {{ getACOn() }} / {{ getTotalAC() }}
+          </span>
+        </div>
+        <div class="h-2.5 w-2.5 rounded-full"
+             [ngClass]="{'bg-blue-400': getACOn()>0, 'bg-gray-300': getACOn()===0 }"
+             title="Aires encendidos"></div>
+      </div>
     </div>
 
-    <!-- Imagen SVG -->
+    <!-- SVG Interactivo -->
     <div class="w-full max-w-4xl flex justify-center">
-      <img src="plano.svg" alt="Plano de la casa"
-           class="w-full h-auto max-h-86 object-contain rounded-md" />
+      <svg viewBox="0 0 905 560" class="w-full h-auto max-h-[600px]">
+        <!-- Imagen de fondo del plano -->
+        <image href="plano.svg" width="905" height="560" />
+        
+        <!-- Puntos de luz interactivos -->
+        <g *ngFor="let room of rooms">
+          <g *ngFor="let light of room.lights">
+            <!-- Resplandor cuando está encendida -->
+            <circle *ngIf="light.on"
+                    [attr.cx]="light.x"
+                    [attr.cy]="light.y"
+                    r="18"
+                    fill="#fbbf24"
+                    opacity="0.4"
+                    class="animate-pulse" />
+            
+            <!-- Círculo principal clickeable -->
+            <circle
+              [attr.cx]="light.x"
+              [attr.cy]="light.y"
+              r="10"
+              [attr.fill]="light.on ? '#fbbf24' : '#6b7280'"
+              stroke="white"
+              stroke-width="2"
+              class="cursor-pointer transition-all hover:r-12"
+              [class.shadow-lg]="light.on"
+              (click)="toggleLightByCoords(room.id, light.id)"
+              (mouseenter)="hoveredLight = room.id + '-' + light.id"
+              (mouseleave)="hoveredLight = null">
+              <title>{{ room.name }} - {{ light.label }}</title>
+            </circle>
+            
+            <!-- Icono de bombilla dentro del círculo -->
+            <g [attr.transform]="'translate(' + (light.x - 5) + ',' + (light.y - 5) + ')'">
+              <path *ngIf="light.on"
+                    d="M5 2 L5 0 M8.66 3.34 L10.08 1.92 M10 6 L12 6 M8.66 8.66 L10.08 10.08 M5 10 L5 12 M1.34 8.66 L-0.08 10.08 M0 6 L-2 6 M1.34 3.34 L-0.08 1.92"
+                    stroke="white"
+                    stroke-width="1"
+                    stroke-linecap="round" />
+              <circle *ngIf="!light.on"
+                      cx="5"
+                      cy="6"
+                      r="3"
+                      fill="none"
+                      stroke="white"
+                      stroke-width="1.5" />
+            </g>
+            
+            <!-- Etiqueta al hacer hover -->
+            <g *ngIf="hoveredLight === room.id + '-' + light.id">
+              <rect
+                [attr.x]="light.x - 40"
+                [attr.y]="light.y - 35"
+                width="80"
+                height="20"
+                rx="4"
+                fill="rgba(0,0,0,0.8)" />
+              <text
+                [attr.x]="light.x"
+                [attr.y]="light.y - 22"
+                text-anchor="middle"
+                fill="white"
+                font-size="10"
+                font-weight="600">
+                {{ room.name }} - {{ light.label }}
+              </text>
+            </g>
+          </g>
+        </g>
+      </svg>
     </div>
   </div>
 
@@ -33,6 +122,7 @@
       </div>
 
       <div class="flex flex-col gap-2">
+        <!-- Luces -->
         <div *ngFor="let light of room.lights" class="flex items-center justify-between">
           <span class="text-gray-500 text-sm">{{ light.label }}</span>
           <button
@@ -42,35 +132,12 @@
             class="w-6 h-6 rounded-full transition-colors border border-gray-200 flex items-center justify-center"
             aria-pressed="{{ light.on }}"
             [attr.aria-label]="(light.on ? 'Apagar' : 'Encender') + ' ' + light.label + ' de ' + room.name">
-            <!-- Icono de luz encendida -->
-            <svg *ngIf="light.on" xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" fill="none"
+            <!-- Icono luz -->
+            <svg *ngIf="light.on" xmlns="http://www.w3.org/2000/svg"
+                 class="w-3 h-3 text-white" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-7.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05 5.636 5.636" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Aire acondicionado -->
-        <div *ngIf="room.ac !== undefined" class="flex items-center justify-between mt-2">
-          <span class="text-gray-500 text-sm">Aire acondicionado</span>
-          <button
-            (click)="toggleAC(room.id)"
-            [class.bg-blue-400]="room.ac"
-            [class.bg-gray-300]="!room.ac"
-            class="w-6 h-6 rounded-full transition-colors border border-gray-200 flex items-center justify-center"
-            aria-pressed="{{ room.ac }}"
-            [attr.aria-label]="(room.ac ? 'Apagar' : 'Encender') + ' aire de ' + room.name">
-            <!-- Icono de nieve (activo/inactivo) -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3"
-                 [ngClass]="{'text-white': room.ac, 'text-gray-500': !room.ac}"
-                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 2v20m0-10l8.66-5M12 12l-8.66-5M12 12l8.66 5M12 12l-8.66 5M12 22v-2M12 2v2" />
+                    d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-7.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05 5.636 5.636" />
             </svg>
           </button>
         </div>
-      </div>
-    </div>
-  </div>
-
-</div>
