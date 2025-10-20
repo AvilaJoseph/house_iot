@@ -43,16 +43,16 @@ export class HomePlanComponent {
       name: 'Habitación 1',
       lights: [{ id: 'l1', label: 'Luz 1', on: false, x: 627, y: 113 }],
       ac: false,
-      acX: 627,
-      acY: 88
+      acX: 541,
+      acY: 45
     },
     {
       id: 'habitacion2',
       name: 'Habitación 2',
       lights: [{ id: 'l1', label: 'Luz 1', on: true, x: 450, y: 134 }],
       ac: true,
-      acX: 450,
-      acY: 109
+      acX: 430,
+      acY: 45
     },
     {
       id: 'habitacion3',
