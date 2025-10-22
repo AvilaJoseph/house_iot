@@ -175,20 +175,18 @@
     </div>
   </div>
 
-  <!-- LISTA DE HABITACIONES -->
+  <!-- LISTA DE HABITACIONES Y CONTROLES (opcional) 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div *ngFor="let room of rooms" class="bg-gray-50 p-6 rounded-2xl flex flex-col shadow-sm">
       <div class="flex items-center justify-between mb-2">
         <h2 class="text-base font-medium text-gray-600">{{ room.name }}</h2>
 
-        <!-- Indicador por habitación -->
         <div class="text-sm text-gray-500">
           {{ getRoomOnCount(room) }} / {{ room.lights.length }}
         </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <!-- Luces -->
         <div *ngFor="let light of room.lights" class="flex items-center justify-between">
           <span class="text-gray-500 text-sm">{{ light.label }}</span>
           <button
@@ -198,7 +196,6 @@
             class="w-6 h-6 rounded-full transition-colors border border-gray-200 flex items-center justify-center"
             aria-pressed="{{ light.on }}"
             [attr.aria-label]="(light.on ? 'Apagar' : 'Encender') + ' ' + light.label + ' de ' + room.name">
-            <!-- Icono luz -->
             <svg *ngIf="light.on" xmlns="http://www.w3.org/2000/svg"
                  class="w-3 h-3 text-white" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -208,7 +205,6 @@
           </button>
         </div>
 
-        <!-- Aire acondicionado -->
         <div *ngIf="room.ac !== undefined" class="flex items-center justify-between mt-2">
           <span class="text-gray-500 text-sm">Aire acondicionado</span>
           <button
@@ -218,7 +214,6 @@
             class="w-6 h-6 rounded-full transition-colors border border-gray-200 flex items-center justify-center"
             aria-pressed="{{ room.ac }}"
             [attr.aria-label]="(room.ac ? 'Apagar' : 'Encender') + ' aire de ' + room.name">
-            <!-- Icono de nieve -->
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3"
                  [ngClass]="{'text-white': room.ac, 'text-gray-500': !room.ac}"
                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -229,6 +224,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
 </div>
