@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-devices',
+  selector: 'devices-page',
   imports: [],
-  templateUrl: './devices.html',
-  styleUrl: './devices.css',
+  templateUrl: './devices.component.html',
+  styleUrls: ['./devices.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Devices { }
