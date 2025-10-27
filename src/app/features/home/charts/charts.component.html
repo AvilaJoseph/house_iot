@@ -1,8 +1,10 @@
 <!-- DASHBOARD 2x2 -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 pb-6 w-full h-[calc(100vh-6rem)]">
-  <!-- CARD 1 -->
+
+  <!-- CARD 1: Temperatura -->
   <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+      <lucide-icon [img]="Thermometer" class="w-5 h-5 text-orange-500"></lucide-icon>
       Temperatura ambiente
     </h2>
     <div class="flex-1 min-h-[250px]">
@@ -10,19 +12,21 @@
     </div>
   </div>
 
-  <!-- CARD 2 -->
+  <!-- CARD 2: Humedad -->
   <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-      Humedad
+      <lucide-icon [img]="Droplet" class="w-5 h-5 text-blue-500"></lucide-icon>
+      Consumo de agua
     </h2>
     <div class="flex-1 min-h-[250px]">
       <home-water-charts></home-water-charts>
     </div>
   </div>
 
-  <!-- CARD 3 -->
+  <!-- CARD 3: Consumo energético -->
   <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+      <lucide-icon [img]="Zap" class="w-5 h-5 text-yellow-500"></lucide-icon>
       Consumo energético
     </h2>
     <div class="flex-1 min-h-[250px]">
@@ -30,12 +34,13 @@
     </div>
   </div>
 
-  <!-- CARD 4 -->
+  <!-- CARD 4: Calidad del aire -->
   <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+      <lucide-icon [img]="AlertCircle" class="w-5 h-5 text-green-600"></lucide-icon>
       Calidad del aire
     </h2>
-    <div class="flex-1 min-h-[250px] flex items-center justify-center text-gray-400">
+    <div class="flex-1">
       <home-qualityair-charts></home-qualityair-charts>
     </div>
   </div>
