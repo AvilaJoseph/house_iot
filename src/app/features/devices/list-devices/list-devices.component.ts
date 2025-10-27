@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-list-devices',
+  selector: 'devices-list-devices',
   imports: [],
   templateUrl: './list-devices.component.html',
   styleUrls: ['./list-devices.component.css'],
