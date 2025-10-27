@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'devices-page',
+  selector: 'app-addbutton',
   imports: [],
-  templateUrl: './devices.component.html',
+  templateUrl: './addbutton.component.html',
+  styleUrls: ['./addbutton.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DevicesComponent { }
+export class Addbutton { }

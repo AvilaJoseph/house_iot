@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'devices-page',
+  selector: 'app-topbar-devices',
   imports: [],
-  templateUrl: './devices.component.html',
+  templateUrl: './topbar-devices.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DevicesComponent { }
+export class TopbarDevices { }

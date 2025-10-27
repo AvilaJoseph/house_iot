@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'devices-page',
+  selector: 'app-energy',
   imports: [],
-  templateUrl: './devices.component.html',
+  templateUrl: './energy.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DevicesComponent { }
+export class EnergyComponent { }

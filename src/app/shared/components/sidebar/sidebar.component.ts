@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
   imports: [LucideAngularModule, CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
   @Output() menuItemClick = new EventEmitter<void>();
@@ -27,7 +26,7 @@ export class SidebarComponent {
   activeMenu = 'dashboard';
 
   menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: this.Home, routes: ['/dashboard'] },
+    { id: 'dashboard', label: 'Dashboard', icon: this.Home, routes: ['/home'] },
     { id: 'devices', label: 'Dispositivos', icon: this.Lightbulb, routes: ['/devices'] },
     { id: 'climate', label: 'Clima', icon: this.Thermometer, routes: ['/climate'] },
     { id: 'energy', label: 'Energía', icon: this.Zap, routes: ['/energy'] },

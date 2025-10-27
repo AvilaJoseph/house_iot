@@ -12,22 +12,15 @@
   <!-- Navigation Menu -->
   <nav class="flex-1">
     <ul class="space-y-2">
-      <li *ngFor="let item of menuItems" 
-          (click)="setActive(item.id)"
-          class="cursor-pointer transition-all duration-200 hover:bg-gray-50 rounded-xl">
-        <a [routerLink]="item.routes" class="flex items-center gap-3 px-4 py-3 rounded-xl"
-             [class.bg-blue-50]="activeMenu === item.id"
-             [class.text-blue-600]="activeMenu === item.id"
-             [class.text-gray-600]="activeMenu !== item.id">
-          <lucide-icon 
-            [img]="item.icon" 
-            class="w-5 h-5" 
-            [class.text-blue-600]="activeMenu === item.id"
-            [class.text-gray-500]="activeMenu !== item.id">
-          </lucide-icon>
+      <li *ngFor="let item of menuItems" class="cursor-pointer transition-all duration-200 hover:bg-gray-50 rounded-xl">
+        <a [routerLink]="item.routes" routerLinkActive="bg-blue-50 text-blue-600"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600">
+          <lucide-icon [img]="item.icon" class="w-5 h-5" routerLinkActive="text-blue-600"></lucide-icon>
           <span class="font-medium">{{ item.label }}</span>
         </a>
       </li>
+
     </ul>
   </nav>
 

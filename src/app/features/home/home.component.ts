@@ -7,7 +7,7 @@ import { ContentHomeComponent } from "./content-home/content-home.component";
     standalone: true,
     templateUrl: './home.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [StatsComponent, ContentHomeComponent]
+    imports: [ContentHomeComponent]
 })
 export class HomeComponent {
 
