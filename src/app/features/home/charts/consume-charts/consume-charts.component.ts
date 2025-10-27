@@ -5,43 +5,37 @@ import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 @Component({
-  selector: 'home-temperature-charts',
+  selector: 'home-consume-charts',
   standalone: true,
   imports: [BaseChartDirective],
-  templateUrl: './temperature-charts.component.html',
+  templateUrl: './consume-charts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemperatureComponent {
-  public lineChartData: ChartConfiguration['data'] = {
+export class ConsumeCharts {
+  public barChartData: ChartConfiguration['data'] = {
     labels: [
-      'Lun - 6 AM', 'Lun - 9 AM', 'Lun - 12 PM', 'Lun - 3 PM', 'Lun - 6 PM',
-      'Mar - 6 AM', 'Mar - 9 AM', 'Mar - 12 PM', 'Mar - 3 PM', 'Mar - 6 PM'
+      'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'
     ],
     datasets: [
       {
-        data: [21, 23, 26, 28, 24, 22, 25, 27, 29, 26],
-        label: 'Temperatura (°C)',
-        fill: false,
-        tension: 0.7,
-        borderColor: '#2563eb',
-        backgroundColor: 'rgba(37, 99, 235, 0.1)',
-        pointBackgroundColor: '#1d4ed8',
-        pointBorderColor: '#fff',
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        borderWidth: 2,
+        data: [120, 150, 180, 130, 160, 200, 170],
+        label: 'Consumo Energético (kWh)',
+        backgroundColor: 'rgba(251, 255, 0, 0.34)',
+        borderColor: '#e6e91876',
+        borderWidth: 1.5,
+        borderRadius: 6,
+        hoverBackgroundColor: 'rgba(37, 99, 235, 0.8)',
       },
     ],
   };
 
-  public lineChartOptions: ChartConfiguration['options'] = {
+  public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display:false,
+        display: false,
       },
-
       tooltip: {
         backgroundColor: '#1e293b',
         titleColor: '#f8fafc',
@@ -53,20 +47,21 @@ export class TemperatureComponent {
     },
     scales: {
       x: {
-        grid: { color: 'rgba(226,232,240,0.4)' }, 
+        grid: { color: 'rgba(226,232,240,0.3)' },
         ticks: { color: '#475569', font: { family: 'Plus Jakarta Sans', size: 12 } },
       },
       y: {
         beginAtZero: true,
-        grid: { color: 'rgba(226,232,240,0.4)' },
+        grid: { color: 'rgba(226,232,240,0.3)' },
         ticks: {
           color: '#475569',
           font: { family: 'Plus Jakarta Sans', size: 12 },
-          callback: (value) => `${value}°`,
+          callback: (value) => `${value} kWh`,
+          
         },
       },
     },
   };
 
-  public lineChartType: ChartType = 'line';
+  public barChartType: ChartType = 'bar';
 }

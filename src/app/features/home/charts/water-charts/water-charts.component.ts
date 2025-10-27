@@ -5,13 +5,13 @@ import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 @Component({
-  selector: 'home-temperature-charts',
+  selector: 'home-water-charts',
   standalone: true,
   imports: [BaseChartDirective],
-  templateUrl: './temperature-charts.component.html',
+  templateUrl: './water-charts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemperatureComponent {
+export class WaterCharts {
   public lineChartData: ChartConfiguration['data'] = {
     labels: [
       'Lun - 6 AM', 'Lun - 9 AM', 'Lun - 12 PM', 'Lun - 3 PM', 'Lun - 6 PM',
@@ -19,13 +19,13 @@ export class TemperatureComponent {
     ],
     datasets: [
       {
-        data: [21, 23, 26, 28, 24, 22, 25, 27, 29, 26],
-        label: 'Temperatura (°C)',
-        fill: false,
-        tension: 0.7,
-        borderColor: '#2563eb',
-        backgroundColor: 'rgba(37, 99, 235, 0.1)',
-        pointBackgroundColor: '#1d4ed8',
+        data: [120, 135, 150, 160, 145, 130, 140, 155, 165, 150],
+        label: 'Consumo de Agua (L)',
+        fill: true,
+        tension: 0.6,
+        borderColor: '#0ea5e9', // azul-500 (agua)
+        backgroundColor: 'rgba(14, 165, 233, 0.15)', // azul con transparencia
+        pointBackgroundColor: '#0284c7',
         pointBorderColor: '#fff',
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -36,12 +36,9 @@ export class TemperatureComponent {
 
   public lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // ✅ ocupa todo el div
     plugins: {
-      legend: {
-        display:false,
-      },
-
+      legend: { display: false },
       tooltip: {
         backgroundColor: '#1e293b',
         titleColor: '#f8fafc',
@@ -53,8 +50,11 @@ export class TemperatureComponent {
     },
     scales: {
       x: {
-        grid: { color: 'rgba(226,232,240,0.4)' }, 
-        ticks: { color: '#475569', font: { family: 'Plus Jakarta Sans', size: 12 } },
+        grid: { color: 'rgba(226,232,240,0.4)' },
+        ticks: {
+          color: '#475569',
+          font: { family: 'Plus Jakarta Sans', size: 12 },
+        },
       },
       y: {
         beginAtZero: true,
@@ -62,7 +62,7 @@ export class TemperatureComponent {
         ticks: {
           color: '#475569',
           font: { family: 'Plus Jakarta Sans', size: 12 },
-          callback: (value) => `${value}°`,
+          callback: (value) => `${value} L`,
         },
       },
     },

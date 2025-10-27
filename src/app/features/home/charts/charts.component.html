@@ -1,7 +1,7 @@
 <!-- DASHBOARD 2x2 -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 pb-6 w-full h-[calc(100vh-6rem)]">
   <!-- CARD 1 -->
-  <div class="bg-gray-50 rounded-2xl  p-4 flex flex-col">
+  <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
       Temperatura ambiente
     </h2>
@@ -11,35 +11,32 @@
   </div>
 
   <!-- CARD 2 -->
-  <div class="bg-gray-50 rounded-2xl  p-4 flex flex-col">
+  <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-      💧 Humedad
+      Humedad
     </h2>
-    <div class="flex-1 min-h-[250px] flex items-center justify-center text-gray-400">
-      <!-- Aquí irá el segundo chart -->
-      Próximamente...
+    <div class="flex-1 min-h-[250px]">
+      <home-water-charts></home-water-charts>
     </div>
   </div>
 
   <!-- CARD 3 -->
-  <div class="bg-gray-50 rounded-2xl  p-4 flex flex-col">
+  <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-      ⚡ Consumo energético
+      Consumo energético
     </h2>
-    <div class="flex-1 min-h-[250px] flex items-center justify-center text-gray-400">
-      <!-- Aquí irá el tercer chart -->
-      Próximamente...
+    <div class="flex-1 min-h-[250px]">
+      <home-consume-charts></home-consume-charts>
     </div>
   </div>
 
   <!-- CARD 4 -->
-  <div class="bg-gray-50 rounded-2xl  p-4 flex flex-col">
+  <div class="bg-gray-50 rounded-2xl p-6 flex flex-col">
     <h2 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-      ☁️ Calidad del aire
+      Calidad del aire
     </h2>
     <div class="flex-1 min-h-[250px] flex items-center justify-center text-gray-400">
-      <!-- Aquí irá el cuarto chart -->
-      Próximamente...
+      <home-qualityair-charts></home-qualityair-charts>
     </div>
   </div>
 </div>
