@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Output, EventEmitter } from '@angular/core';
-import { LucideAngularModule, Home, Lightbulb, Thermometer, Droplet, Zap, Camera, Lock, AlertCircle, BarChart3 } from 'lucide-angular';
+import { LucideAngularModule, Home, Lightbulb, Thermometer, Droplet, Zap, Camera, Lock, AlertCircle, BarChart3, Route } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [LucideAngularModule, CommonModule],
+  imports: [LucideAngularModule, CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,12 +27,12 @@ export class SidebarComponent {
   activeMenu = 'dashboard';
 
   menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: this.Home },
-    { id: 'devices', label: 'Dispositivos', icon: this.Lightbulb },
-    { id: 'climate', label: 'Clima', icon: this.Thermometer },
-    { id: 'energy', label: 'Energía', icon: this.Zap },
-    { id: 'security', label: 'Seguridad', icon: this.Lock },
-    { id: 'analytics', label: 'Análisis', icon: this.BarChart3 },
+    { id: 'dashboard', label: 'Dashboard', icon: this.Home, routes: ['/dashboard'] },
+    { id: 'devices', label: 'Dispositivos', icon: this.Lightbulb, routes: ['/devices'] },
+    { id: 'climate', label: 'Clima', icon: this.Thermometer, routes: ['/climate'] },
+    { id: 'energy', label: 'Energía', icon: this.Zap, routes: ['/energy'] },
+    { id: 'security', label: 'Seguridad', icon: this.Lock, routes: ['/security'] },
+    { id: 'analytics', label: 'Análisis', icon: this.BarChart3, routes: ['/analytics'] },
   ];
 
   setActive(menuId: string) {
