@@ -1,1 +1,7 @@
-<p>buttons-list works!</p>,
+<div class="flex flex-wrap items-center gap-4">
+  @for (item of buttonsList; track $index) {
+    <button class="flex items-center gap-2 bg-white border border-gray-500 rounded-lg px-4 h-10 hover:bg-gray-50 transition-colors">
+      <span>{{ item.name }}</span>
+    </button>
+  }
+</div>
