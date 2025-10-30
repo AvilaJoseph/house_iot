@@ -1,16 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LucideAngularModule, Power, RefreshCcw, Lock } from 'lucide-angular';
 
 @Component({
   selector: 'devices-buttons-list',
-  standalone: true,
-  imports: [],
+  imports: [LucideAngularModule],
   templateUrl: './buttons-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonsListComponent {
+
+  Power = Power;
+  RefreshCcw = RefreshCcw;
+  Lock = Lock;
+
   buttonsList = [
-    { name: 'Shut Down', icon: 'power_settings_new' },
-    { name: 'Restart', icon: 'refresh' },
-    { name: 'Lock', icon: 'lock' },
+    { name: 'Apagar', icon: this.Power },
+    { name: 'Reiniciar', icon: this.RefreshCcw },
+    { name: 'Bloquear', icon: this.Lock },
   ];
 }
