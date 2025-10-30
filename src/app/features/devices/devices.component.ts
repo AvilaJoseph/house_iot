@@ -7,4 +7,5 @@ import { TopbarDevices } from "./topbar-devices/topbar-devices.component";
   templateUrl: './devices.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DevicesComponent { }
+export class DevicesComponent { 
+}

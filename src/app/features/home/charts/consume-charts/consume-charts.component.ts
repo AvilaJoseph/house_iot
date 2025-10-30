@@ -24,7 +24,7 @@ export class ConsumeCharts {
         borderColor: '#e6e91876',
         borderWidth: 1.5,
         borderRadius: 6,
-        hoverBackgroundColor: 'rgba(37, 99, 235, 0.8)',
+        hoverBackgroundColor: '#fbff00ab',
       },
     ],
   };
