@@ -2,11 +2,12 @@ import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Sun, CloudRain, Cloud, Snowflake, Thermometer } from 'lucide-angular';
 import { TemperatureStats } from './temperature-stats/temperature-stats.component';
+import { TemperatureTrend } from "./temperature-trend/temperature-trend.component";
 
 @Component({
   selector: 'home-temperature',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, TemperatureStats],
+  imports: [CommonModule, LucideAngularModule, TemperatureStats, TemperatureTrend],
   templateUrl: './temperature.component.html',
 })
 export class Temperature {
