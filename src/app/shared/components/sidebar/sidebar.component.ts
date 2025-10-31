@@ -28,7 +28,7 @@ export class SidebarComponent {
   menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: this.Home, routes: ['/home'] },
     { id: 'devices', label: 'Dispositivos', icon: this.Lightbulb, routes: ['/devices'] },
-    { id: 'climate', label: 'Clima', icon: this.Thermometer, routes: ['/climate'] },
+    { id: 'climate', label: 'Clima', icon: this.Thermometer, routes: ['/temperature'] },
     { id: 'energy', label: 'Energía', icon: this.Zap, routes: ['/energy'] },
     { id: 'security', label: 'Seguridad', icon: this.Lock, routes: ['/security'] },
     { id: 'analytics', label: 'Análisis', icon: this.BarChart3, routes: ['/analytics'] },

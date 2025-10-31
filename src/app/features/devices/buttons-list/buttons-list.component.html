@@ -1,8 +1,8 @@
-<div class="flex flex-wrap items-center gap-4">
+<div class="flex flex-wrap items-center gap-3">
   @for (item of buttonsList; track $index) {
-    <button class="flex items-center gap-2 bg-white border border-gray-400 rounded-lg px-4 h-10 hover:bg-gray-50 transition-colors">
-        <lucide-icon [name]="item.icon" class="w-5 h-5 text-gray-600"></lucide-icon>
-      <span class="font-medium tracking-wide text-gray-600">{{ item.name }}</span>
+    <button class="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-2 h-10 hover:bg-gray-50 transition-colors shadow-sm">
+      <lucide-icon [name]="item.icon" class="w-5 h-5 text-gray-600"></lucide-icon>
+      <span class="font-medium text-sm text-gray-700">{{ item.name }}</span>
     </button>
   }
 </div>
