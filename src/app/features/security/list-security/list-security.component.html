@@ -2,8 +2,9 @@
   <div class="overflow-x-auto">
     <div class="flex items-center gap-2 mb-4">
       <lucide-icon [img]="Camera" class="w-6 h-6 text-blue-500"></lucide-icon>
-      <span class="text-lg font-semibold text-gray-800">Lista de camaras</span>
+      <span class="text-lg font-semibold text-gray-800">Lista de cámaras</span>
     </div>
+
     <table class="min-w-full text-sm text-left border-collapse">
       <thead>
         <tr class="border-b text-gray-500 font-medium">
@@ -14,9 +15,13 @@
           <th class="py-3 px-3 text-right">Acciones</th>
         </tr>
       </thead>
+
       <tbody>
         @for (camera of cameras; track $index) {
-          <tr class="border-b last:border-none hover:bg-gray-50 transition">
+          <tr
+            class="border-b last:border-none hover:bg-gray-50 transition cursor-pointer"
+            (click)="toggleExpand(camera)"
+          >
             <td class="py-3 px-3 font-medium text-gray-700 flex items-center gap-3">
               <lucide-icon [img]="camera.icon" class="w-5 h-5 text-blue-500"></lucide-icon>
               {{ camera.name }}
@@ -42,36 +47,73 @@
               <div class="inline-flex items-center gap-2">
                 <button
                   type="button"
-                  title="Ver"
-                  (click)="onView(camera)"
+                  (click)="onEdit(camera); $event.stopPropagation()"
                   class="p-2 rounded-md hover:bg-gray-100 transition"
-                  aria-label="Ver cámara {{ camera.name }}"
-                >
-                  <lucide-icon [img]="Camera" class="w-4 h-4 text-blue-600"></lucide-icon>
-                </button>
-
-                <button
-                  type="button"
-                  title="Editar"
-                  (click)="onEdit(camera)"
-                  class="p-2 rounded-md hover:bg-gray-100 transition"
-                  aria-label="Editar cámara {{ camera.name }}"
                 >
                   <lucide-icon [img]="Edit2" class="w-4 h-4 text-amber-600"></lucide-icon>
                 </button>
 
                 <button
                   type="button"
-                  title="Eliminar"
-                  (click)="onDelete(camera)"
+                  (click)="onDelete(camera); $event.stopPropagation()"
                   class="p-2 rounded-md hover:bg-gray-100 transition"
-                  aria-label="Eliminar cámara {{ camera.name }}"
                 >
                   <lucide-icon [img]="Trash2" class="w-4 h-4 text-red-600"></lucide-icon>
                 </button>
               </div>
             </td>
           </tr>
+
+          @if (expandedCamera === camera) {
+            <tr class="bg-gray-50">
+              <td colspan="5" class="py-4 px-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <lucide-icon [img]="AlertTriangle" class="w-5 h-5 text-red-500"></lucide-icon>
+                  <span class="font-semibold text-gray-800">Advertencias</span>
+                </div>
+
+                @if (camera.warnings.length > 0) {
+                  <ul class="space-y-2">
+                    @for (warning of camera.warnings; track $index) {
+                      <li
+                        class="flex justify-between items-center bg-white border border-gray-200 rounded-lg p-3 shadow-sm"
+                      >
+                        <div class="flex items-center gap-3">
+                          <lucide-icon [img]="AlertTriangle" class="w-4 h-4 text-red-500"></lucide-icon>
+                          <span class="text-gray-700 font-medium">{{ warning.title }}</span>
+                        </div>
+
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                          <span>{{ warning.time }}</span>
+                          <span
+                            class="px-2 py-0.5 rounded-full font-semibold"
+                            [ngClass]="{
+                              'bg-red-100 text-red-700': warning.level === 'Alta',
+                              'bg-yellow-100 text-yellow-700': warning.level === 'Media',
+                              'bg-blue-100 text-blue-700': warning.level === 'Baja'
+                            }"
+                          >
+                            {{ warning.level }}
+                          </span>
+
+                          <button
+                            type="button"
+                            class="p-1.5 rounded-md hover:bg-gray-100 transition"
+                            (click)="onViewWarning(warning, camera); $event.stopPropagation()"
+                            title="Ver advertencia"
+                          >
+                            <lucide-icon [img]="Camera" class="w-4 h-4 text-blue-600"></lucide-icon>
+                          </button>
+                        </div>
+                      </li>
+                    }
+                  </ul>
+                } @else {
+                  <p class="text-gray-500 text-sm">No hay advertencias registradas para esta cámara.</p>
+                }
+              </td>
+            </tr>
+          }
         }
       </tbody>
     </table>
