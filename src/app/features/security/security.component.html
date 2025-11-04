@@ -1,5 +1,9 @@
 <div class="w-full h-full flex flex-col">
-    <h2 class="text-3xl font-bold">Seguridad</h2>
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <h2 class="text-3xl font-bold text-gray-800">Seguridad</h2>
+        <addbutton [title]="'Añadir dispositivo'"></addbutton>
+    </div>
+
     <div class="flex-1">
         <security-security-plan></security-security-plan>
         <security-list-security></security-list-security>
