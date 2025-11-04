@@ -1,16 +1,39 @@
-import { CommonModule, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { LucideAngularModule, Monitor, Camera, MoreVertical } from 'lucide-angular';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'devices-list-devices',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [LucideAngularModule, NgClass],
   templateUrl: './list-devices.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListDevices {
+  Monitor = Monitor;
+  Camera = Camera;
+  MoreVertical = MoreVertical;
+
   DevicesList = [
-    { name: 'Device 1', type: 'Sensor', udid: '12345', serialNumber: 'SN12345', status: 'Active', location: 'Living Room' },
-    { name: 'Device 2', type: 'Camera', udid: '67890', serialNumber: 'SN67890', status: 'Inactive', location: 'Front Door' },
-    { name: 'Device 3', type: 'Thermostat', udid: '54321', serialNumber: 'SN54321', status: 'Active', location: 'Bedroom' },
-  ]
- }
+    {
+      name: 'Sensor de temperatura',
+      type: 'IoT',
+      serialNumber: 'TX-001',
+      udid: 'ABC123XYZ',
+      status: 'Active',
+      location: 'Laboratorio 1',
+    },
+    {
+      name: 'Cámara térmica',
+      type: 'CCTV',
+      serialNumber: 'CT-045',
+      udid: 'XYZ987ABC',
+      status: 'Inactive',
+      location: 'Entrada principal',
+    },
+  ];
+
+  onViewDevice(device: any) {
+    console.log('Ver dispositivo:', device);
+  }
+}
