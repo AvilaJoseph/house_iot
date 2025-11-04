@@ -1,1 +1,40 @@
-<p>list-energy works!</p>,
+<div class="bg-white rounded-2xl p-6 transition-all border border-gray-100 shadow-sm mt-6">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+      <lucide-icon [img]="LineChart" class="w-5 h-5 text-blue-500"></lucide-icon>
+      Consumo Energético (últimas horas)
+    </h2>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-sm text-left border-collapse">
+      <thead>
+        <tr class="border-b text-gray-500 font-medium">
+          <th class="py-2 px-3">Hora</th>
+          <th class="py-2 px-3">Consumo</th>
+          <th class="py-2 px-3">Tipo</th>
+          <th class="py-2 px-3">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (hour of hours; track $index) {
+          <tr class="border-b last:border-none hover:bg-gray-50 transition">
+            <td class="py-2 px-3 font-medium text-gray-700">{{ hour.time }}</td>
+            <td class="py-2 px-3 text-gray-800 text-lg">
+              {{ hour.consume }}<span class="text-sm text-gray-500">{{ hour.unit }}</span>
+            </td>
+            <td class="py-2 px-3">
+              <lucide-icon [img]="hour.icon" class="w-5 h-5 text-blue-500"></lucide-icon>
+            </td>
+            <td class="py-2 px-3 text-gray-600">{{ hour.desc }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 text-sm text-gray-600 border-t pt-3 flex items-center gap-2">
+    <lucide-icon [img]="TrendingUp" class="w-4 h-4 text-green-600"></lucide-icon>
+    {{ tendencia }}
+  </div>
+</div>

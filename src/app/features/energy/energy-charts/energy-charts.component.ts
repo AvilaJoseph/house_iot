@@ -69,7 +69,7 @@ export class EnergyCharts {
           font: {
             family: 'Plus Jakarta Sans',
             size: 13,
-            weight: 500, // ✅ ahora es número
+            weight: 500,
           },
           usePointStyle: true,
           boxWidth: 8,
@@ -86,7 +86,7 @@ export class EnergyCharts {
         titleFont: {
           family: 'Plus Jakarta Sans',
           size: 13,
-          weight: 600, // ✅ ahora es número
+          weight: 600,
         },
         bodyFont: {
           family: 'Plus Jakarta Sans',
