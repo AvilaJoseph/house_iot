@@ -1,0 +1,123 @@
+<div class="space-y-6 mt-4">
+  <!-- PLANO SVG INTERACTIVO -->
+  <div
+    class="relative bg-white rounded-2xl p-4 flex justify-center items-center overflow-hidden"
+  >
+    <!-- Indicadores globales -->
+    <div
+      class="absolute top-4 left-4 flex items-center gap-3 bg-white backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg z-10"
+    >
+      <!-- Cámaras -->
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs text-gray-500">Cámaras</span>
+          <span class="text-sm font-semibold text-gray-800">
+            {{ getCamerasOn() }} / {{ getTotalCameras() }}
+          </span>
+        </div>
+        <div
+          class="h-2.5 w-2.5 rounded-full"
+          [ngClass]="{
+            'bg-blue-400': getCamerasOn() > 0,
+            'bg-gray-300': getCamerasOn() === 0
+          }"
+          title="Cámaras activas"
+        ></div>
+      </div>
+
+      <div class="w-px h-6 bg-gray-200"></div>
+
+      <!-- Aire acondicionado -->
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs text-gray-500">Aire</span>
+          <span class="text-sm font-semibold text-gray-800">
+            {{ getACOn() }} / {{ getTotalAC() }}
+          </span>
+        </div>
+        <div
+          class="h-2.5 w-2.5 rounded-full"
+          [ngClass]="{
+            'bg-sky-400': getACOn() > 0,
+            'bg-gray-300': getACOn() === 0
+          }"
+          title="Aires encendidos"
+        ></div>
+      </div>
+    </div>
+
+    <!-- PLANO SVG -->
+    <div class="w-full max-w-4xl flex justify-center">
+      <svg viewBox="0 0 905 560" class="w-full h-auto max-h-[600px]">
+        <image href="plano.svg" width="905" height="560" />
+
+        @for (room of rooms; track room.id) {
+          <!-- Cámaras -->
+          @for (camera of room.cameras; track camera.id) {
+            @if (camera.on) {
+              <circle
+                [attr.cx]="camera.x"
+                [attr.cy]="camera.y"
+                r="18"
+                fill="#3b82f6"
+                opacity="0.4"
+                class="animate-pulse"
+              />
+            }
+
+            <circle
+              [attr.cx]="camera.x"
+              [attr.cy]="camera.y"
+              r="10"
+              [attr.fill]="camera.on ? '#3b82f6' : '#6b7280'"
+              stroke="white"
+              stroke-width="2"
+              class="cursor-pointer transition-all hover:r-12"
+              (click)="toggleCamera(room.id, camera.id)"
+              (mouseenter)="hoveredCamera = room.id + '-' + camera.id"
+              (mouseleave)="hoveredCamera = null"
+            ></circle>
+
+            <!-- Ícono de cámara -->
+            <g
+              [attr.transform]="'translate(' + (camera.x - 5) + ',' + (camera.y - 5) + ')'"
+            >
+              <path
+                d="M2 3h6l2 2v4H2z M5 5v4"
+                stroke="white"
+                stroke-width="1.2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+
+            @if (hoveredCamera === room.id + '-' + camera.id) {
+              <!-- Tooltip -->
+              <g>
+                <rect
+                  [attr.x]="camera.x - 50"
+                  [attr.y]="camera.y - 35"
+                  width="100"
+                  height="20"
+                  rx="4"
+                  fill="rgba(0,0,0,0.8)"
+                />
+                <text
+                  [attr.x]="camera.x"
+                  [attr.y]="camera.y - 22"
+                  text-anchor="middle"
+                  fill="white"
+                  font-size="10"
+                  font-weight="600"
+                >
+                  {{ room.name }} - {{ camera.label }}
+                </text>
+              </g>
+            }
+          }
+        }
+      </svg>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'security-list-security',
-  imports: [LucideAngularModule, NgClass, NgFor, NgIf],
+  imports: [LucideAngularModule, NgClass],
   templateUrl: './list-security.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
