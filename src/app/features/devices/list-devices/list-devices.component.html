@@ -1,63 +1,133 @@
-<div class="w-full overflow-x-auto mt-6 rounded-lg">
-    <table class="w-full border-collapse">
-        <thead class="bg-white">
-            <tr class="border-b border-gray-200">
-                <th class="text-left py-3 px-4 w-12">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                </th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Type</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Serial</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">UDID</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Device Status</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Location</th>
-                <th class="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider w-20">Actions</th>
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-100">
-            @for (device of DevicesList; track device.udid) {
-            <tr class="hover:bg-white transition-colors">
-                <td class="py-3 px-4">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                </td>
-                <td class="py-3 px-4">
-                    <span class="text-sm font-medium text-gray-900">{{device.name}}</span>
-                </td>
-                <td class="py-3 px-4">
-                    <span class="text-sm text-gray-700">{{device.type}}</span>
-                </td>
-                <td class="py-3 px-4">
-                    <span class="text-sm text-gray-600">{{device.serialNumber}}</span>
-                </td>
-                <td class="py-3 px-4">
-                    <span class="text-sm text-gray-700">{{device.udid}}</span>
-                </td>
-                <td class="py-3 px-4">
-                    @if (device.status === 'Active') {
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full">
-                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                        Active
-                    </span>
-                    } @else {
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full">
-                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                        Inactive
-                    </span>
-                    }
-                </td>
-                <td class="py-3 px-4">
-                    <span class="text-sm font-medium text-gray-900">{{device.location}}</span>
-                </td>
-                <td class="py-3 px-4">
-                    <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
+<div class="w-full overflow-x-auto mt-6 rounded-2xl shadow-sm border border-gray-100 bg-white">
+  <table class="w-full border-collapse text-sm">
+    <thead class="bg-gray-50 text-gray-700">
+      <tr class="border-b border-gray-200">
+        <th class="py-3 px-4 text-left w-12">
+          <input
+            type="checkbox"
+            class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          Nombre
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          Tipo
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          Serial
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          UDID
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          Estado
+        </th>
+        <th class="py-3 px-4 text-left font-semibold uppercase text-xs tracking-wider">
+          Ubicación
+        </th>
+        <th class="py-3 px-4 text-center font-semibold uppercase text-xs tracking-wider w-20">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-100">
+      @for (device of DevicesList; track device.udid) {
+        <tr
+          class="hover:bg-gray-50 transition-colors cursor-pointer"
+        >
+          <td class="py-3 px-4">
+            <input
+              type="checkbox"
+              class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+          </td>
+
+          <td class="py-3 px-4 font-medium text-gray-900">
+            {{ device.name }}
+          </td>
+
+          <td class="py-3 px-4 text-gray-700">
+            {{ device.type }}
+          </td>
+
+          <td class="py-3 px-4 text-gray-600">
+            {{ device.serialNumber }}
+          </td>
+
+          <td class="py-3 px-4 text-gray-700">
+            {{ device.udid }}
+          </td>
+
+          <td class="py-3 px-4">
+            @if (device.status === 'Active') {
+              <span
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full"
+              >
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                Activo
+              </span>
+            } @else {
+              <span
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-full"
+              >
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                Inactivo
+              </span>
             }
-        </tbody>
-    </table>
+          </td>
+
+          <td class="py-3 px-4 font-medium text-gray-900">
+            {{ device.location }}
+          </td>
+
+          <td class="py-3 px-4 text-center">
+            <div class="flex items-center justify-center gap-2">
+              <!-- Botón de ver (cámara) -->
+              <button
+                class="p-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
+                title="Ver cámara"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5 text-blue-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-3 0a4 4 0 110-8 4 4 0 010 8zm0 0v5"
+                  />
+                </svg>
+              </button>
+
+              <!-- Botón más acciones -->
+              <button
+                class="p-2 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors"
+                title="Más opciones"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>

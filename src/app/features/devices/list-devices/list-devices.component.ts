@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'devices-list-devices',
   imports: [CommonModule],
   templateUrl: './list-devices.component.html',
-  styleUrls: ['./list-devices.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListDevices {

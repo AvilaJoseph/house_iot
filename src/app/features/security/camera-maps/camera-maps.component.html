@@ -1,7 +1,7 @@
 <div class="space-y-6 mt-4">
   <!-- PLANO SVG INTERACTIVO -->
   <div
-    class="relative bg-white rounded-2xl p-4 flex justify-center items-center overflow-hidden"
+    class="relative bg-white rounded-2xl p-4 flex justify-center items-center overflow-hidden shadow-sm border border-gray-100"
   >
     <!-- Indicadores globales -->
     <div
@@ -24,26 +24,6 @@
           title="Cámaras activas"
         ></div>
       </div>
-
-      <div class="w-px h-6 bg-gray-200"></div>
-
-      <!-- Aire acondicionado -->
-      <div class="flex items-center gap-2">
-        <div class="flex flex-col">
-          <span class="text-xs text-gray-500">Aire</span>
-          <span class="text-sm font-semibold text-gray-800">
-            {{ getACOn() }} / {{ getTotalAC() }}
-          </span>
-        </div>
-        <div
-          class="h-2.5 w-2.5 rounded-full"
-          [ngClass]="{
-            'bg-sky-400': getACOn() > 0,
-            'bg-gray-300': getACOn() === 0
-          }"
-          title="Aires encendidos"
-        ></div>
-      </div>
     </div>
 
     <!-- PLANO SVG -->
@@ -52,28 +32,29 @@
         <image href="plano.svg" width="905" height="560" />
 
         @for (room of rooms; track room.id) {
-          <!-- Cámaras -->
           @for (camera of room.cameras; track camera.id) {
+            <!-- halo para cámara activa (sigue dependiendo de camera.on) -->
             @if (camera.on) {
               <circle
                 [attr.cx]="camera.x"
                 [attr.cy]="camera.y"
                 r="18"
                 fill="#3b82f6"
-                opacity="0.4"
+                opacity="0.35"
                 class="animate-pulse"
               />
             }
 
+            <!-- CÍRCULO PRINCIPAL: color depende de camera.on y de si está selected -->
             <circle
               [attr.cx]="camera.x"
               [attr.cy]="camera.y"
               r="10"
-              [attr.fill]="camera.on ? '#3b82f6' : '#6b7280'"
+              [attr.fill]="selectedCamera === (room.id + '-' + camera.id) ? '#0ea5e9' : (camera.on ? '#3b82f6' : '#6b7280')"
               stroke="white"
               stroke-width="2"
               class="cursor-pointer transition-all hover:r-12"
-              (click)="toggleCamera(room.id, camera.id)"
+              (click)="selectCamera(room.id, camera.id)"
               (mouseenter)="hoveredCamera = room.id + '-' + camera.id"
               (mouseleave)="hoveredCamera = null"
             ></circle>
@@ -96,9 +77,9 @@
               <!-- Tooltip -->
               <g>
                 <rect
-                  [attr.x]="camera.x - 50"
+                  [attr.x]="camera.x - 55"
                   [attr.y]="camera.y - 35"
-                  width="100"
+                  width="110"
                   height="20"
                   rx="4"
                   fill="rgba(0,0,0,0.8)"
