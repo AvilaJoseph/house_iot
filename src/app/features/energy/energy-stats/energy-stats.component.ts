@@ -4,7 +4,6 @@ import { LucideAngularModule, Bolt, BarChart3, Gauge, DollarSign } from 'lucide-
 
 @Component({
   selector: 'energy-energy-stats',
-  standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './energy-stats.component.html',
 })

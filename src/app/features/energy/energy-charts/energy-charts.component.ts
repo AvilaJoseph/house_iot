@@ -12,7 +12,6 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'energy-energy-charts',
-  standalone: true,
   imports: [BaseChartDirective],
   templateUrl: './energy-charts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

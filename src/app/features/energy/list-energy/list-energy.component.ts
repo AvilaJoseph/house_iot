@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'energy-list-energy',
-  standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './list-energy.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
