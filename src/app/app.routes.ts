@@ -5,6 +5,7 @@ import { EnergyComponent } from './features/energy/energy.component';
 import { DevicesComponent } from './features/devices/devices.component';
 import { TemperatureComponent } from './features/home/charts/temperature-charts/temperature-charts.component';
 import { Temperature } from './features/temperature/temperature.component';
+import { SecurityComponent } from './features/security/security.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: 'devices', component: DevicesComponent},
       { path: 'energy', component: EnergyComponent},
       { path: 'temperature', component: Temperature},
+      { path: 'security', component: SecurityComponent},
     ],
   }
 ];

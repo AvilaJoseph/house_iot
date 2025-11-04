@@ -4,7 +4,7 @@ import {  ButtonsListComponent } from "./buttons-list/buttons-list.component";
 import { ListDevices } from './list-devices/list-devices.component';
 
 @Component({
-  selector: 'devices-page',
+  selector: 'home-devices',
   imports: [TopbarDevices, ButtonsListComponent, ListDevices],
   templateUrl: './devices.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

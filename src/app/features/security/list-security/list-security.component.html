@@ -1,0 +1,79 @@
+<div class="bg-white rounded-2xl p-6 transition-all border border-gray-100 mt-6">
+  <div class="overflow-x-auto">
+    <div class="flex items-center gap-2 mb-4">
+      <lucide-icon [img]="Camera" class="w-6 h-6 text-blue-500"></lucide-icon>
+      <span class="text-lg font-semibold text-gray-800">Lista de camaras</span>
+    </div>
+    <table class="min-w-full text-sm text-left border-collapse">
+      <thead>
+        <tr class="border-b text-gray-500 font-medium">
+          <th class="py-3 px-3">Cámara</th>
+          <th class="py-3 px-3">Ubicación</th>
+          <th class="py-3 px-3">Estado</th>
+          <th class="py-3 px-3">Tipo</th>
+          <th class="py-3 px-3 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (camera of cameras; track $index) {
+          <tr class="border-b last:border-none hover:bg-gray-50 transition">
+            <td class="py-3 px-3 font-medium text-gray-700 flex items-center gap-3">
+              <lucide-icon [img]="camera.icon" class="w-5 h-5 text-blue-500"></lucide-icon>
+              {{ camera.name }}
+            </td>
+            <td class="py-3 px-3 text-gray-700">{{ camera.location }}</td>
+
+            <td class="py-3 px-3">
+              <span
+                class="px-3 py-1.5 rounded-full text-xs font-medium"
+                [ngClass]="{
+                  'bg-green-100 text-green-700': camera.status === 'Activa',
+                  'bg-red-100 text-red-700': camera.status === 'Inactiva',
+                  'bg-yellow-100 text-yellow-700': camera.status === 'En revisión'
+                }"
+              >
+                {{ camera.status }}
+              </span>
+            </td>
+
+            <td class="py-3 px-3 text-gray-600">{{ camera.type }}</td>
+
+            <td class="py-3 px-3 text-right">
+              <div class="inline-flex items-center gap-2">
+                <button
+                  type="button"
+                  title="Ver"
+                  (click)="onView(camera)"
+                  class="p-2 rounded-md hover:bg-gray-100 transition"
+                  aria-label="Ver cámara {{ camera.name }}"
+                >
+                  <lucide-icon [img]="Camera" class="w-4 h-4 text-blue-600"></lucide-icon>
+                </button>
+
+                <button
+                  type="button"
+                  title="Editar"
+                  (click)="onEdit(camera)"
+                  class="p-2 rounded-md hover:bg-gray-100 transition"
+                  aria-label="Editar cámara {{ camera.name }}"
+                >
+                  <lucide-icon [img]="Edit2" class="w-4 h-4 text-amber-600"></lucide-icon>
+                </button>
+
+                <button
+                  type="button"
+                  title="Eliminar"
+                  (click)="onDelete(camera)"
+                  class="p-2 rounded-md hover:bg-gray-100 transition"
+                  aria-label="Eliminar cámara {{ camera.name }}"
+                >
+                  <lucide-icon [img]="Trash2" class="w-4 h-4 text-red-600"></lucide-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
